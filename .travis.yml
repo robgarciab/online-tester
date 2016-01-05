@@ -12,3 +12,4 @@ deploy:
   space: development
   on:
     repo: robgarciab/online-tester
+  edge: true
