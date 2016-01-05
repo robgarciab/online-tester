@@ -1,0 +1,24 @@
+<div style="margin-bottom: 10px">
+	<h3>{{userExam.exam.description}}</h3>
+	<timer></timer>
+</div>
+
+<div class="slide-animate-container">
+	<p ng-show="sequence == null">{{userExam.exam.instructions}}</p>
+</div>
+
+<div uib-collapse="sequence != null">
+	<a ng-repeat="examQuestion in examQuestions" ng-click="loadQuestion(examQuestion.sequence)" style="margin-right: 5px" 
+		class="btn btn-{{examQuestion.answered? 'success' : 'primary'}}" title="open">{{examQuestion.sequence}}</a>
+</div>
+<hr />
+
+<div uib-collapse="sequence == null">
+	<div ng-include="'templates/question.html'"></div>
+</div>
+
+<div>
+	<a ng-show="userExam.startTime == null" ng-click="start()" class="btn btn-primary" title="start"> Start Exam</a>
+	<a ng-show="userExam.startTime != null && sequence == null" ng-click="submit()" class="btn btn-primary" title="submit"> Submit Exam</a>
+</div>
+<hr />

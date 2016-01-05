@@ -1,0 +1,25 @@
+spring:
+  data:
+    rest:
+      base-uri: /api
+  jpa:
+    show-sql: true
+  aop:
+    proxy-target-class: true  
+logging:
+  level:
+    org.springframework.security: DEBUG
+messages:
+  common:
+    no-data: There was an error when retrieving the data
+  user:
+    name-not-found: There is no active session or your username is not setup.
+  exam:
+    expired: Your exam has already expired
+    active-found: You have an active exam already
+    not-enrolled: You are not enrolled to this exam
+    no-active-found: No active exam found for this user
+    forbidden: User does not have access to this exam
+  answer:
+    edit:
+      not-choice-selected: No choice selected

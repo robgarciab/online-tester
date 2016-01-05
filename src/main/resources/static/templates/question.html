@@ -1,0 +1,14 @@
+<div>
+	<h3>{{examQuestion.question.description}}</h3>
+</div>
+
+<div ng-repeat="choice in examQuestion.question.choices">
+	<hr />
+	<input type="radio" ng-show="examQuestion.question.questionType == 'SINGLE_CHOICE'" ng-model="selectedChoice.id" ng-value="choice.id" id="{{choice.id}}" name="choice">
+	<input type="checkbox" ng-show="examQuestion.question.questionType == 'MULTIPLE_CHOICE'" ng-model="selectedChoices[$index].value" ng-value="choice.value" id="{{choice.value}}" name="choice">
+	{{choice.description}}
+</div>
+<hr />
+<div>
+	<a ng-click="saveQuestion()" class="btn btn-primary" title="start"> Save Answer</a>
+</div>

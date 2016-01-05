@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+<title>Online tester</title>
+<link href="css/angular-bootstrap.css" rel="stylesheet">
+</head>
+
+<body ng-app="app" ng-cloak class="ng-cloak">
+	
+	<div ng-controller="navigation" class="container">
+		<ul class="nav nav-pills" role="tablist">
+			<li ng-class="{active:tab('home')}"><a href="#/">Home</a></li>
+			<li ng-hide="authenticated"><a href="#/login">Login</a></li>
+			<li style="float: right" ng-show="authenticated"><a href="" ng-click="logout()">Logout</a></li>
+		</ul>
+	</div>
+	<div ng-view class="container"></div>
+	<script src="js/angular-bootstrap.js"></script>
+</body>
+</html>

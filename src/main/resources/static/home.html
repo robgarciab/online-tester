@@ -1,0 +1,21 @@
+<div class="page-header">
+	<h3>Exams</h3>
+</div>
+
+<div ng-hide="authenticated">
+	<p>Login to see your enrolled exams</p>
+</div>
+
+<div ng-show="authenticated">
+	<hr />
+	<div ng-hide="userExams.length">
+		<p>You don't have any enrolled exam</p>
+	</div>
+	<div ng-repeat="userExam in userExams">
+		<div class="exam">
+			<a href="#/exam/{{userExam.exam.id}}" class="btn btn-link" title="start">
+				<h4 style="display: inline;">{{userExam.exam.description}}</h4> <span class="label label-success" ng-show="userExam.startTime">In progress</span>
+			</a>
+		</div>
+	</div>
+</div>

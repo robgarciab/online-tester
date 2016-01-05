@@ -1,0 +1,12 @@
+<div class="page-header">
+	<h3>{{results.exam.description}} Evaluation Results</h3>
+</div>
+<div class="page-header" ng-show="results.score >= results.exam.minPointsToPass">
+	<h3 style="color: green">Congratulations! You have passed the exam</h3>
+	<h3 style="color: green">Score: {{results.score}}</h3>
+</div>
+
+<div class="page-header" ng-show="results.score < results.exam.minPointsToPass">
+	<h3 style="color: red">Sorry. You didn't pass the exam</h3>
+	<h3 style="color: red">Score: {{results.score}}</h3>
+</div>
