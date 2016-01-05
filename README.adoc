@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/robgarciab/fitnessjiffy-spring.svg?branch=master)](https://travis-ci.org/robgarciab/fitnessjiffy-spring)
+image:https://travis-ci.org/robgarciab/fitnessjiffy-spring.svg?branch=master["Build Status", link="https://travis-ci.org/robgarciab/fitnessjiffy-spring"]
 
 Spring Boot makes it easy to create Spring-powered, production-grade applications and
 services with absolute minimum fuss. It takes an opinionated view of the Spring platform
