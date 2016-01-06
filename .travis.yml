@@ -2,8 +2,8 @@ language: java
 jdk:
 - oraclejdk8
 deploy:
-  provider:
-    provider: cloudfoundry
+  edge: true
+  provider: cloudfoundry
   api: https://api.run.pivotal.io
   username: robgarciab@gmail.com
   password:
