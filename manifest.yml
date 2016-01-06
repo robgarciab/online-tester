@@ -1,0 +1,6 @@
+
+---
+applications:
+  - name: online-tester
+    buildpack: java_buildpack
+    path: target/online-tester-0.0.1-SNAPSHOT.jar
