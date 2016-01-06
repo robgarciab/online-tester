@@ -2,11 +2,11 @@ language: java
 jdk:
 - oraclejdk8
 deploy:
-  provider:
-    provider: cloudfoundry
-  api: https://api.run.pivotal.io
+  edge: true
+  provider: cloudfoundry
   username: robgarciab@gmail.com
   password:
-    secure: J/KiElqCjOh+5IQC1xIZgxG9jRVDGDL8jZ5MFZHPUtIMlDMjtPNagF05064aeFYl/ZnsNNmJetyGYVS6VpEnxfbWn3/H7HHfgNQkA4beofGrQICphnrafai+K0DCaX1GlU/1dEi2wVYe0qRMTqAIXi19KGRwx7telcTrY27Q0Ny/iQvtTh9q+krjHNodUSvn39nxMVASaoRtk+8PTvYBS8e9DrpI8csFHATUW+j9JQJszdjpFvew0WPfom2vwxINW8qtiotu01M+Di8YxKSm16z6UIoVtanKtczShKnPmrD587ZcCbIsV+TEArvx/UuhZ3lA5eAi10tfdRWCsTQHxicDw7Q12k6KMwshRI2//nbAGKQYrMxYs+SqA3r+JvffZX9b/K1rsNlKurfMvvRPIy+3/qP9mxZU43Q+eYC+wWvWXajzw77NJBo0MQ0tZxBzLTELKdX5ubizEcjCrcViiWUcM3jECPpUZr5gDCLvrorHnByuf9weDbEiBTZx6wDIufp2YEcgQNCisphVgAgFdF6RyVkmfWWOFQfgYdei8qZ/p0/XjKo66X4BaxvxLcHrHFf/rILhEYTP3jwSpbATZICT4wV+iRdNR5v6NlLptOJWKRaB2HMAjdpWC0r5qvvFzK2DpBHWOY78/yGKk2LKP/4aLtCE3qjAe4M+GdJqQYA=
+    secure: kF0zhjAK5jnitaR+1+47AcvjeQIWkl4hYhDkALo6P2nBnJf8dcQHT+YRfsNNx8VY4RE747I9UcN/A1DH84+dNbfJnCZdcw5jSP1+oRmtljtj/gyDnAN0FNaAjb8NA/MtRsNn4OSwiJLrTUgVHYuSfuNCVIatSabXijQ3+uhkCR+jjk+X1YvuZyhlcQPkCdTa0P2urvAaOZVtaG76i9sJwM7pTjCu3p+1XwRTNOP1Ys9f7oKljdKQWfl4wEbFs7ox9pLtrPptKQ2oQfFJZ2Ly/9nVcvL9Elp2u728t2Sv/ILPz03mAdI04Ouge9qs6Ratb+OgtUKds8ISZult/0+IzDxIug+DdY6cYjFOP3Rk0ZCCGzHVIYfEAhQgg+nYuraxmA2pygBvqDIHb4Owt2wbhINJT+ilLU75EZFRnSWJA/0lbzFMTPKen/KZiTjWFcqMni7yCNg0RHUC48PpB3QI7h9RN55Jx91ekIRXpkgGVILnz0lyvwOz9ENazkvgVR6V5O1zxuF3rbwVQ1qDNv/FGHv+pLf6tSFa9O8SzXE0LKMnxTf0rYaAQ1B0wKObjN9aCNvhQn58Vr7CkZnlf9oTkfYtvGNkYREECzu8VBlkiBoPTmT4xY+WqrFMF58yO6+I7S3pW2Q+6ZwO34BjbkBI2szvcUhE2Jl6nglHu/D2Fbc=
+  api: https://api.run.pivotal.io
   organization: katari
   space: development
