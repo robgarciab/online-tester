@@ -14,7 +14,8 @@
 			<li style="float: right" ng-show="authenticated"><a href="" ng-click="logout()">Logout</a></li>
 		</ul>
 	</div>
+	<div class="alert alert-danger" ng-show="error">{{error}}</div>
 	<div ng-view class="container"></div>
-	<script src="js/angular-bootstrap.js"></script>
+	@import.js@
 </body>
 </html>

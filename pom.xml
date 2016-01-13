@@ -16,6 +16,7 @@
 	</parent>
 
 	<properties>
+		<start-class>com.katari.examples.testmaker.Application</start-class>
 		<java.version>1.8</java.version>
 		<spring-data.version>Fowler-SR2</spring-data.version>
 		<wro4j.version>1.7.9</wro4j.version>
@@ -63,6 +64,10 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-devtools</artifactId>
+	    </dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
@@ -101,55 +106,20 @@
 	<build>
 		<resources>
 			<resource>
-				<directory>${project.basedir}/src/main/resources</directory>
+				<directory>${basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+				<excludes>
+					<exclude>filter-values-*.properties</exclude>
+				</excludes>
 			</resource>
 			<resource>
 				<directory>${project.build.directory}/generated-resources</directory>
 			</resource>
 		</resources>
         <plugins>
-            <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<compilerArgument>-parameters</compilerArgument>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<dependencies>
-			        <dependency>
-			            <groupId>org.springframework</groupId>
-			            <artifactId>springloaded</artifactId>
-			            <version>${spring-loaded.version}</version>
-			        </dependency>
-			    </dependencies>
-			</plugin>
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<executions>
-					<execution>
-						<!-- Serves *only* to filter the wro.xml so it can get an absolute 
-							path for the project -->
-						<id>copy-resources</id>
-						<phase>validate</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${basedir}/target/wro</outputDirectory>
-							<resources>
-								<resource>
-									<directory>src/main/wro</directory>
-									<filtering>true</filtering>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<groupId>ro.isdc.wro4j</groupId>
@@ -167,7 +137,7 @@
 					<wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory</wroManagerFactory>
 					<cssDestinationFolder>${project.build.directory}/generated-resources/static/css</cssDestinationFolder>
 					<jsDestinationFolder>${project.build.directory}/generated-resources/static/js</jsDestinationFolder>
-					<wroFile>${project.build.directory}/wro/wro.xml</wroFile>
+					<wroFile>${wroFile}</wroFile>
 					<extraConfigFile>${basedir}/src/main/wro/wro.properties</extraConfigFile>
 					<contextFolder>${basedir}/src/main/resources</contextFolder>
 					<ignoreMissingResources>false</ignoreMissingResources>
@@ -231,5 +201,40 @@
 			</plugin>
         </plugins>
     </build>
-
+	<profiles>
+		<profile>
+	      <id>dev</id>
+	      <activation>
+	        <property>
+	          <name>env</name>
+	          <value>dev</value>
+	        </property>
+	      </activation>
+	      <build>
+			<filters>
+		      <filter>${project.basedir}/src/main/resources/filter-values-dev.properties</filter>
+		    </filters>
+		  </build>
+		  <properties>
+		  	<wroFile>${basedir}/src/main/wro/wro-dev.xml</wroFile>
+		  </properties>
+	    </profile>
+	    <profile>
+	      <id>qa</id>
+	      <activation>
+	        <property>
+	          <name>env</name>
+	          <value>test</value>
+	        </property>
+	      </activation>
+	      <build>
+			<filters>
+		      <filter>${project.basedir}/src/main/resources/filter-values-test.properties</filter>
+		    </filters>
+		  </build>
+		  <properties>
+		  	<wroFile>${basedir}/src/main/wro/wro-test.xml</wroFile>
+		  </properties>
+	    </profile>
+	</profiles>
 </project>

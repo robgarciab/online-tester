@@ -19,4 +19,11 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'ui.bootstrap']).config(function(
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+	$httpProvider.interceptors.push(function($q) {
+	  return {
+	   'responseError': function(rejection) {
+	       console.log(rejection);
+	    }
+	  };
+	});
 });

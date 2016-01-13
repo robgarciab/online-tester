@@ -13,7 +13,7 @@ public class GlobalControllerExceptionHandler {
 	private static final Logger logger = LoggerFactory.getLogger(GlobalControllerExceptionHandler.class);
 	
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)  // 500
-    @ExceptionHandler(Throwable.class)
+    @ExceptionHandler({IllegalArgumentException.class, IllegalAccessError.class, IllegalStateException.class})
     public String handleError(Throwable e) {
 		logger.error("Error stack trace:", e);
 		return e.getMessage();

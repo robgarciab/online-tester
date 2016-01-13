@@ -28,7 +28,7 @@ angular.module('app').controller('exam', function($scope, $http, $routeParams, $
 				$scope.examQuestions = data;
 			});
 			// start timer. See timer.js
-			$scope.$emit('exam-start', $scope.userExam.timeToComplete, $scope.userExam.exam.id);
+//			$scope.$emit('exam-start', $scope.userExam.timeToComplete, $scope.userExam.exam.id);
 		});
 	};
 	
@@ -59,7 +59,7 @@ angular.module('app').controller('exam', function($scope, $http, $routeParams, $
 						$scope.selectedChoice.id = $scope.answer.selectedChoices[0];
 					}
 				} else {
-					$scope.answer = new Object();
+					$scope.answer = {};
 				}
 				// finally update $scope.sequence to update UI
 				$scope.sequence = sequence;
