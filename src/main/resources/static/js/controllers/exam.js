@@ -15,7 +15,7 @@ angular.module('app').controller('exam', function($scope, $http, $routeParams, $
 				$scope.examQuestions = data;
 			});
 			// start timer. See timer.js
-			$scope.$emit('exam-start', $scope.userExam.timeToComplete, $scope.userExam.exam.id);
+			$scope.$emit('start-timer', $scope.userExam.timeToComplete, $scope.userExam.exam.id);
 		}
 	});
 	
@@ -28,7 +28,7 @@ angular.module('app').controller('exam', function($scope, $http, $routeParams, $
 				$scope.examQuestions = data;
 			});
 			// start timer. See timer.js
-//			$scope.$emit('exam-start', $scope.userExam.timeToComplete, $scope.userExam.exam.id);
+			$scope.$emit('start-timer', $scope.userExam.timeToComplete, $scope.userExam.exam.id);
 		});
 	};
 	
@@ -97,7 +97,7 @@ angular.module('app').controller('exam', function($scope, $http, $routeParams, $
 		examService.submit($scope.userExam.exam.id).success(function(data) {
 			$location.path('/exam/results/' + data.exam.id);
 			// stop timer. See timer.js
-			$scope.$emit('exam-finish');
+			$scope.$emit('stop-timer');
 		});
 	};
 });

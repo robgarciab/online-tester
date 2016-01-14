@@ -19,11 +19,19 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'ui.bootstrap']).config(function(
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-	$httpProvider.interceptors.push(function($q) {
+	$httpProvider.interceptors.push(function($q, $rootScope) {
 	  return {
 	   'responseError': function(rejection) {
-	       console.log(rejection);
+	       if (rejection.status == 500 && rejection.data != null) {
+	    	   $rootScope.error = rejection.data.message;
+	       }
+	       return $q.reject(rejection);
 	    }
 	  };
+	});
+}).run(function($rootScope) {
+	/* Reset error when a new view is loaded */
+	$rootScope.$on('$viewContentLoaded', function() {
+		delete $rootScope.error;
 	});
 });

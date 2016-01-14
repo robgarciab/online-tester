@@ -8,5 +8,12 @@
     <js>webjar:angularjs/1.4.7/angular-route.min.js</js>
     <js>webjar:angularjs/1.4.7/angular-cookies.min.js</js>
     <js>webjar:angular-ui-bootstrap/0.14.3/ui-bootstrap.min.js</js>
+	<js>/static/js/app.js</js>
+	<js>/static/js/controllers/exam.js</js>
+	<js>/static/js/controllers/home.js</js>
+	<js>/static/js/controllers/navigation.js</js>
+	<js>/static/js/controllers/results.js</js>
+	<js>/static/js/directives/timer.js</js>
+	<js>/static/js/services/exam.js</js>
    </group>
 </groups>

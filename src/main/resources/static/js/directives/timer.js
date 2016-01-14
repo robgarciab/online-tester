@@ -38,11 +38,15 @@ angular.module('app').directive('timer', function() {
 		    	$scope.stop = true;
 		    }
 		    
-		    $scope.$on('exam-start', function(event, timeToComplete, examId) {
+		    $scope.$on('start-timer', function(event, timeToComplete, examId) {
 		    	$scope.startTimer(timeToComplete, examId);
 			});
 		    
-		    $scope.$on('exam-finish', function(event) {
+		    $scope.$on('stop-timer', function(event) {
+		    	$scope.stopTimer();
+			});
+		    /* Stop polling when view change */
+		    $scope.$on('$locationChangeStart', function() {
 		    	$scope.stopTimer();
 			});
 		},
