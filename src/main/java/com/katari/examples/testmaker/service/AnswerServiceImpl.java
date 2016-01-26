@@ -71,7 +71,7 @@ public class AnswerServiceImpl implements AnswerService {
 	@Transactional
 	public UserAnswer saveAnswerWithChoicesInActiveExam(UserAnswerDTO userAnswerDTO) {
 		UserExam userExam = userExamRepository.findActiveExamByUserName(SecurityUtils.getUserName());
-		UserAnswer userAnswer = userAnswerRepository.findByUserExamExamIdAndExamQuestionSequence(userExam.getExam().getId(), userAnswerDTO.getQuestionSequence());
+		UserAnswer userAnswer = userAnswerRepository.findByUserExamExamIdAndExamQuestionSequence(userExam.getId(), userAnswerDTO.getQuestionSequence());
 		
 		if (userAnswer == null) {
 			userAnswer = new UserAnswer();
@@ -94,7 +94,7 @@ public class AnswerServiceImpl implements AnswerService {
 	@Override
 	public UserAnswer findUserAnswerForActiveExamByQuestionSequence(Integer sequence) {
 		UserExam exam = userExamRepository.findActiveExamByUserName(SecurityUtils.getUserName());
-		UserAnswer answer = userAnswerRepository.findByUserExamExamIdAndExamQuestionSequence(exam.getExam().getId(), sequence);
+		UserAnswer answer = userAnswerRepository.findByUserExamExamIdAndExamQuestionSequence(exam.getId(), sequence);
 		return answer;
 	}
 }

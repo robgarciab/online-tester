@@ -129,12 +129,14 @@ public class ExamServiceImpl implements ExamService {
 	
 	@Override
 	public UserExam findActiveExamForUser() {
-		return userExamRepository.findActiveExamByUserName(SecurityUtils.getUserName());
+		UserExam result = userExamRepository.findActiveExamByUserName(SecurityUtils.getUserName());
+		return result;
 	}
 
 	@Override
 	public List<UserExam> findAvailableExamsForUser() {
-		return userExamRepository.findAvailableExamsByUserName(SecurityUtils.getUserName());
+		List<UserExam> result = userExamRepository.findAvailableExamsByUserName(SecurityUtils.getUserName()); 
+		return result;
 	}
 
 	@Override
