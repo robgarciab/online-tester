@@ -17,8 +17,8 @@ angular.module('app').directive('timer', function() {
 		    	}
 		    	
 		    	if ($scope.secondsLeft % 10 == 0) { // get seconds left from server every 10 seconds
-		    		$http.get('/exams/active/secondsLeft').success(function(data) {
-		    			$scope.secondsLeft = data;
+		    		$http.get('/exams/active/secondsLeft').then(function (response) {
+		    			$scope.secondsLeft = response.data;
 						$timeout($scope.poll, 1000);
 					});
 		    	} else { // reduce counter every second

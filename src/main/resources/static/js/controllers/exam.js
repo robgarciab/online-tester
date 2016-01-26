@@ -8,11 +8,11 @@ angular.module('app').controller('exam', function($scope, $http, $routeParams, $
 		var examDetailsUrl = '/exams/' + $scope.examId;
 	}
 	
-	$http.get(examDetailsUrl).success(function(data) {
-		$scope.userExam = data;
+	$http.get(examDetailsUrl).then(function (response) {
+		$scope.userExam = response.data;
 		if ($scope.userExam.startTime != null) {
-			$http.get('/questions').success(function(data) {
-				$scope.examQuestions = data;
+			$http.get('/questions').then(function (response) {
+				$scope.examQuestions = response.data;
 			});
 			// start timer. See timer.js
 			$scope.$emit('start-timer', $scope.userExam.timeToComplete, $scope.userExam.exam.id);
@@ -21,11 +21,11 @@ angular.module('app').controller('exam', function($scope, $http, $routeParams, $
 	
 	$scope.start = function() {
 		// start exam
-		$http.put('/exams/start/' + $scope.examId).success(function(data) {
-			$scope.userExam = data;
+		$http.put('/exams/start/' + $scope.examId).then(function (response) {
+			$scope.userExam = response.data;
 			// get questions
-			$http.get('/questions').success(function(data) {
-				$scope.examQuestions = data;
+			$http.get('/questions').then(function (response) {
+				$scope.examQuestions = response.data;
 			});
 			// start timer. See timer.js
 			$scope.$emit('start-timer', $scope.userExam.timeToComplete, $scope.userExam.exam.id);
@@ -33,8 +33,8 @@ angular.module('app').controller('exam', function($scope, $http, $routeParams, $
 	};
 	
 	$scope.loadQuestion = function(sequence) {
-		$http.get('/questions/' + sequence).success(function(data) {
-			$scope.examQuestion = data;
+		$http.get('/questions/' + sequence).then(function (response) {
+			$scope.examQuestion = response.data;
 			
 			if ($scope.examQuestion.question.questionType == 'MULTIPLE_CHOICE') {
 				$scope.selectedChoices = [];
@@ -46,8 +46,8 @@ angular.module('app').controller('exam', function($scope, $http, $routeParams, $
 				$scope.selectedChoice = {id: 0};
 			}
 			
-			$http.get('/answers?examQuestionSequence=' + sequence).success(function(data) {
-				$scope.answer = data;
+			$http.get('/answers?examQuestionSequence=' + sequence).then(function (response) {
+				$scope.answer = response.data;
 				if ($scope.answer != "") {
 					if ($scope.examQuestion.question.questionType == 'MULTIPLE_CHOICE') {
 						for (var i = 0; i < $scope.selectedChoices.length; i++) {
@@ -84,18 +84,18 @@ angular.module('app').controller('exam', function($scope, $http, $routeParams, $
 			}
 		}
 
-		$http.put('/answers', $scope.answer).success(function(data) {
+		$http.put('/answers', $scope.answer).then(function (response) {
 			$scope.sequence = null;
 			// reload questions
-			$http.get('/questions').success(function(data) {
-				$scope.examQuestions = data;
+			$http.get('/questions').then(function (response) {
+				$scope.examQuestions = response.data;
 			});
 		});
 	};
 	
 	$scope.submit = function() {
-		examService.submit($scope.userExam.exam.id).success(function(data) {
-			$location.path('/exam/results/' + data.exam.id);
+		examService.submit($scope.userExam.exam.id).then(function (response) {
+			$location.path('/exam/results/' + response.data.exam.id);
 			// stop timer. See timer.js
 			$scope.$emit('stop-timer');
 		});

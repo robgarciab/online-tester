@@ -14,15 +14,15 @@ angular.module('app').controller('navigation', function($rootScope, $scope, $htt
 				
 		$http.get('/user', {
 			headers : headers
-		}).success(function(data) {
-			if (data.name) {
+		}).then(function successCallback(response) {
+			if (response.data.name) {
 				$rootScope.authenticated = true;
-				$rootScope.username = data.name;
+				$rootScope.username = response.data.name;
 			} else {
 				$rootScope.authenticated = false;
 			}
 			callback && callback($rootScope.authenticated);
-		}).error(function() {
+		}, function errorCallback(response) {
 			$rootScope.authenticated = false;
 			$rootScope.username = null;
 			callback && callback(false);
@@ -48,10 +48,10 @@ angular.module('app').controller('navigation', function($rootScope, $scope, $htt
 	};
 
 	$scope.logout = function() {
-		$http.post('/logout', {}).success(function() {
+		$http.post('/logout', {}).then(function successCallback(response) {
 			$rootScope.authenticated = false;
 			$location.path("/");
-		}).error(function(data) {
+		}, function errorCallback(response) {
 			$rootScope.authenticated = false;
 			$location.path("/");
 		});

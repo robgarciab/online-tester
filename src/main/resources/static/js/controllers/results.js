@@ -2,7 +2,7 @@ angular.module('app').controller('results', function($rootScope, $routeParams, $
 	
 	$scope.examId = $routeParams.id;
 	
-	$http.get('/exams/' + $scope.examId).success(function(data) {
-		$scope.results = data;
+	$http.get('/exams/' + $scope.examId).then(function (response) {
+		$scope.results = response.data;
 	});
 });

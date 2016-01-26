@@ -1,4 +1,4 @@
-describe("App", function() {
+describe("Online tester", function() {
 
 	beforeEach(module('app'));
 	var $httpBackend, $controller, $http;
@@ -14,7 +14,7 @@ describe("App", function() {
 
 	describe("Default headers", function() {
 
-		it("include X-Requested-With", function() {
+		it("should include X-Requested-With", function() {
 			var $scope = {};
 			$httpBackend.expectGET('', function(headers) {
 				expect(headers['X-Requested-With']).toEqual('XMLHttpRequest');
@@ -25,23 +25,6 @@ describe("App", function() {
 		});
 
 	});
-
-//	describe("Home Controller", function() {
-//
-//		it("says Hello Test when controller loads", function() {
-//			var $scope = {};
-//			$httpBackend.expectGET('/resource/').respond(200, {
-//				id : 4321,
-//				content : 'Hello Test'
-//			});
-//			var controller = $controller('home', {
-//				$scope : $scope
-//			});
-//			$httpBackend.flush();
-//			expect($scope.greeting.content).toEqual('Hello Test');
-//		});
-//
-//	});
 
 	describe("Navigation Controller", function() {
 
@@ -59,14 +42,14 @@ describe("App", function() {
 			$httpBackend.flush();
 		}));
 
-		it("tries to authenticate when controller loads", function() {
+		it("should authenticate when controller loads", function() {
 			expect($rootScope.authenticated).toEqual(false);
 
 		});
 
 		describe("Login", function() {
 
-			it("authenticates successfully with correct credentials", function() {
+			it("should authenticate successfully with correct credentials", function() {
 				$httpBackend.expectGET('/user', function(headers) {
 					expect(headers.authorization).toBeDefined();
 					return true;
@@ -82,7 +65,7 @@ describe("App", function() {
 				expect($rootScope.authenticated).toEqual(true);
 			});
 
-			it("does not authenticate successfully if credentials are bad", function() {
+			it("should not authenticate successfully if credentials are bad", function() {
 				$httpBackend.expectGET('/user', function(headers) {
 					expect(headers.authorization).toBeDefined();
 					return true;
@@ -101,20 +84,51 @@ describe("App", function() {
 
 		describe("Logout", function() {
 
-			it("successful logout", function() {
+			it("should logout", function() {
 				$httpBackend.expectPOST('/logout').respond(200);
 				$scope.logout();
 				$httpBackend.flush();
 				expect($rootScope.authenticated).toEqual(false);
 			});
 
-			it("unsuccessful logout", function() {
+			it("should not logout", function() {
 				$httpBackend.expectPOST('/logout').respond(400);
 				$scope.logout();
 				$httpBackend.flush();
 				expect($rootScope.authenticated).toEqual(false);
 			});
 
+		});
+		
+		describe("Home Controller", function() {
+		
+			it("should display available exams", function() {
+				// first we need to be authenticated
+				$httpBackend.expectGET('/user', function(headers) {
+					expect(headers.authorization).toBeDefined();
+					return true;
+				}).respond(200, {
+					name : 'user'
+				});
+				$scope.credentials = {
+					username : 'user',
+					password : 'pwd'
+				};
+				$scope.login();
+				$httpBackend.flush();
+				expect($rootScope.authenticated).toEqual(true);
+				
+				$httpBackend.expectGET('/exams/availables').respond(200, [
+				    {id : 1},
+				    {id : 2}
+				]);
+				var controller = $controller('home', {
+					$scope : $scope,
+					$rootScope : $rootScope
+				});
+				$httpBackend.flush();
+				expect($scope.userExams.length).toEqual(2);
+			});
 		});
 
 	});
