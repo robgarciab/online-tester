@@ -28,9 +28,9 @@ The project also includes TravisCI and Cloudfoundry config files (Cloudfoundry d
 There are different options to add security to a single page application. For this project I've chosen token based authentication described in this great Spring tutorial: [Spring Security and Angular JS].
 
 ###Next steps:
-  - Take a look to [jhipster]. It's a very useful code generation tool which allows you to create single page applications.
+  - Take a look to [JHipster]. It's a very useful code generation tool which allows you to create single page applications.
 
 [Spring Security and Angular JS]: <https://spring.io/guides/tutorials/spring-security-and-angular-js/>
 [Grunt]: <http://gruntjs.com/>
 [Gulp]: <http://gulpjs.com/>
-[jhispter]: <https://jhipster.github.io/>
+[JHipster]: <https://jhipster.github.io/>
