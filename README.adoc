@@ -1,2 +1,0 @@
-= Online tester (Springboot + AngularJS Example) image:https://travis-ci.org/robgarciab/fitnessjiffy-spring.svg?branch=master["Build Status", link="https://travis-ci.org/robgarciab/fitnessjiffy-spring"]
-
