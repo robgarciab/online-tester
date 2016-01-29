@@ -30,8 +30,7 @@ There are different options to add security to a single page application. For th
 ###Running the application locally:
   - Download the code as a zip file from github or clone it to your local machine.
   - Start the application by running this command: mvn spring-boot:run
-  - Go to http://localhost:8080
-You can user the following credentials to access: roberto/password or gabriel/password.
+  - Go to http://localhost:8080 you can use the following credentials to access: roberto/password or gabriel/password.
 
 Some other sucessful commands:
   - To build the application: mvn install
