@@ -28,9 +28,9 @@ The project also includes TravisCI and Cloudfoundry config files (Cloudfoundry d
 There are different options to add security to a single page application. For this project I've chosen token based authentication described in this great Spring tutorial: [Spring Security and Angular JS].
 
 ###Running the application locally:
-Download the code as a zip file from github or clone it to your local machine.
-Start the application by running this command: mvn spring-boot:run
-Go to [http://localhost:8080]
+  - Download the code as a zip file from github or clone it to your local machine.
+  - Start the application by running this command: mvn spring-boot:run
+  - Go to http://localhost:8080
 You can user the following credentials to access: roberto/password or gabriel/password.
 
 Some other sucessful commands:
@@ -44,4 +44,3 @@ Some other sucessful commands:
 [Grunt]: <http://gruntjs.com/>
 [Gulp]: <http://gulpjs.com/>
 [JHipster]: <https://jhipster.github.io/>
-[http://localhost:8080] : <http://localhost:8080>
