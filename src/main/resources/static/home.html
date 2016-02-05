@@ -1,9 +1,14 @@
-<div class="page-header">
+<div class="page-header" ng-hide="authenticated">
+	<h1>Online Tester</h1>
+</div>
+
+<div class="page-header" ng-show="authenticated">
 	<h3>Exams</h3>
 </div>
 
 <div ng-hide="authenticated">
-	<p>Login to see your enrolled exams</p>
+	<img alt="online tester" src="/images/test.png" class="logo">
+	<p>Welcome to Online tester. Use these credentials to login: roberto/password</p>
 </div>
 
 <div ng-show="authenticated">
